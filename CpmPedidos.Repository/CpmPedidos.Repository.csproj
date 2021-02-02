@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Mappings\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CpmPedidos.Domain\CpmPedidos.Domain.csproj" />
+    <ProjectReference Include="..\CpmPedidos.Interface\CpmPedidos.Interface.csproj" />
+  </ItemGroup>
+
+</Project>
