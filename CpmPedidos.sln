@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpmPedidos.Domain", "CpmPedidos.Domain\CpmPedidos.Domain.csproj", "{450EE908-2EC2-4BA0-B900-44C88CC7EA14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CpmPedidos.Domain", "CpmPedidos.Domain\CpmPedidos.Domain.csproj", "{450EE908-2EC2-4BA0-B900-44C88CC7EA14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpmPedidos.Interface", "CpmPedidos.Interface\CpmPedidos.Interface.csproj", "{91E52418-F6A8-418D-AD2D-3DA810584482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CpmPedidos.Interface", "CpmPedidos.Interface\CpmPedidos.Interface.csproj", "{91E52418-F6A8-418D-AD2D-3DA810584482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpmPedidos.Repository", "CpmPedidos.Repository\CpmPedidos.Repository.csproj", "{DA58545F-F985-48E3-88CB-0BD2E86B8653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CpmPedidos.API", "CpmPedidos.API\CpmPedidos.API.csproj", "{61968A66-C663-4F51-9E13-B64612C999B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpmPedidos.Repository", "CpmPedidos.Repository\CpmPedidos.Repository.csproj", "{034C05EC-12E6-4BE6-A0FF-3D21A5DDB5EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,14 @@ Global
 		{91E52418-F6A8-418D-AD2D-3DA810584482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E52418-F6A8-418D-AD2D-3DA810584482}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E52418-F6A8-418D-AD2D-3DA810584482}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA58545F-F985-48E3-88CB-0BD2E86B8653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA58545F-F985-48E3-88CB-0BD2E86B8653}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA58545F-F985-48E3-88CB-0BD2E86B8653}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA58545F-F985-48E3-88CB-0BD2E86B8653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61968A66-C663-4F51-9E13-B64612C999B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61968A66-C663-4F51-9E13-B64612C999B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61968A66-C663-4F51-9E13-B64612C999B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61968A66-C663-4F51-9E13-B64612C999B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{034C05EC-12E6-4BE6-A0FF-3D21A5DDB5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{034C05EC-12E6-4BE6-A0FF-3D21A5DDB5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{034C05EC-12E6-4BE6-A0FF-3D21A5DDB5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{034C05EC-12E6-4BE6-A0FF-3D21A5DDB5EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
