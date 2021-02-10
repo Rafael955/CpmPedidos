@@ -4,24 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CpmPedidos.Repository
 {
-    public class ClienteMapping : BaseDomainMapping<Cliente>
+    public class CategoriaProdutoMapping : BaseDomainMapping<CategoriaProduto>
     {
-        public ClienteMapping() : base("tb_cliente")
+        public CategoriaProdutoMapping() : base("tb_categoria_produto")
         {
 
         }
 
-        public override void Configure(EntityTypeBuilder<Cliente> builder)
+        public override void Configure(EntityTypeBuilder<CategoriaProduto> builder)
         {
             base.Configure(builder);
 
             builder.Property(x => x.Nome).HasColumnName("nome").HasMaxLength(100).IsRequired();
-            builder.Property(x => x.CPF).HasColumnName("cpf").HasMaxLength(11).IsRequired();
             builder.Property(x => x.Ativo).HasColumnName("ativo").IsRequired();
-
-            builder.Property(x => x.EnderecoId).HasColumnName("endereco_id").IsRequired();
         }
     }
-
-
 }
