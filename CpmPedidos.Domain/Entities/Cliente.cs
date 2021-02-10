@@ -18,5 +18,8 @@ namespace CpmPedidos.Domain
         public int EnderecoId { get; set; }
 
         public virtual Endereco Endereco { get; set; }
+
+
+        public virtual List<Pedido> Pedidos { get; set; }
     }
 }

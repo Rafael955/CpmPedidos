@@ -22,7 +22,12 @@ namespace CpmPedidos.Repository
             builder.Property(x => x.Complemento).HasColumnName("complemento").HasMaxLength(50);
             builder.Property(x => x.Cep).HasColumnName("cep").HasMaxLength(8);
 
+            //Associações unidirecionais UM PARA UM
             builder.HasOne(x => x.Cliente).WithOne(x => x.Endereco).HasForeignKey<Cliente>(x => x.EnderecoId);
+
+            //Associações unidirecionais UM PARA MUITOS
+            builder.Property(x => x.CidadeId).HasColumnName("cidade_id").IsRequired();
+            builder.HasOne(x => x.Cidade).WithMany().HasForeignKey(x => x.CidadeId);
         }
     }
 

@@ -20,6 +20,9 @@ namespace CpmPedidos.Domain
 
         public virtual List<Imagem> Imagens { get; set; }
 
+        public virtual List<PromocaoProduto> Promocoes { get; set; }
+
+
         public bool Ativo { get; set; }
     }
 }
