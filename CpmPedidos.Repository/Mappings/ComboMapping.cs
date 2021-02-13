@@ -22,6 +22,22 @@ namespace CpmPedidos.Repository
             //Associações unidirecionais UM PARA MUITOS
             builder.Property(x => x.ImagemId).HasColumnName("imagem_id").IsRequired();
             builder.HasOne(x => x.Imagem).WithMany().HasForeignKey(x => x.ImagemId);
+
+            builder
+                .HasMany(x => x.Produtos)
+                .WithMany(x => x.Combos)
+                .UsingEntity<ProdutoCombo>(
+                    x => x.HasOne(y => y.Produto).WithMany().HasForeignKey(y => y.ProdutoId),
+                    x => x.HasOne(y => y.Combo).WithMany().HasForeignKey(y => y.ComboId),
+                    x =>
+                    {
+                        x.ToTable("tb_produto_combo");
+
+                        x.HasKey(y => new { y.ProdutoId, y.ComboId }); // chave composta
+
+                        x.Property(x => x.ProdutoId).HasColumnName("produto_id").IsRequired();
+                        x.Property(x => x.ComboId).HasColumnName("combo_id").IsRequired();
+                    });
         }
     }
 

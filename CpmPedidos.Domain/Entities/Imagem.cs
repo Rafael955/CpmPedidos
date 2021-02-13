@@ -1,4 +1,6 @@
-﻿namespace CpmPedidos.Domain
+﻿using System.Collections.Generic;
+
+namespace CpmPedidos.Domain
 {
     public class Imagem : BaseDomain
     {
@@ -7,5 +9,8 @@
         public string NomeArquivo { get; set; }
 
         public bool Principal { get; set; }
+
+
+        public virtual List<Produto> Produtos { get; set; }
     }
 }
