@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CpmPedidos.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210212162036_Init")]
-    partial class Init
+    [Migration("20210220034317_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -330,9 +330,8 @@ namespace CpmPedidos.Repository.Migrations
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasPrecision(17, 2)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("preco");
+                        .HasColumnName("descricao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -341,7 +340,9 @@ namespace CpmPedidos.Repository.Migrations
                         .HasColumnName("nome");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("numeric");
+                        .HasPrecision(17, 2)
+                        .HasColumnType("numeric(17,2)")
+                        .HasColumnName("preco");
 
                     b.HasKey("Id");
 

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CpmPedidos.Repository.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,8 +63,8 @@ namespace CpmPedidos.Repository.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     codigo = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    preco = table.Column<string>(type: "character varying(50)", maxLength: 50, precision: 17, scale: 2, nullable: false),
-                    Preco = table.Column<decimal>(type: "numeric", nullable: false),
+                    descricao = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    preco = table.Column<decimal>(type: "numeric(17,2)", precision: 17, scale: 2, nullable: false),
                     categoria_id = table.Column<int>(type: "integer", nullable: false),
                     ativo = table.Column<bool>(type: "boolean", nullable: false),
                     criado_em = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)

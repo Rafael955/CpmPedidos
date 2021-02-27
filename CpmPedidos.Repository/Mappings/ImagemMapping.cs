@@ -18,9 +18,6 @@ namespace CpmPedidos.Repository
             builder.Property(x => x.Nome).HasColumnName("nome").HasMaxLength(20).IsRequired();
             builder.Property(x => x.NomeArquivo).HasColumnName("nome_arquivo").HasMaxLength(20).IsRequired();
             builder.Property(x => x.Principal).HasColumnName("principal").IsRequired();
-
-           
-
         }
     }
 

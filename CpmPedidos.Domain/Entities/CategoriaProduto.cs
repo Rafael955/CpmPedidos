@@ -14,5 +14,10 @@ namespace CpmPedidos.Domain
 
 
         public virtual List<Produto> Produtos { get; set; }
+
+        public override bool Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

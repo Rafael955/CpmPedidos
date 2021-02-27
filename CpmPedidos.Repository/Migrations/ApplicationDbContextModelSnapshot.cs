@@ -328,9 +328,8 @@ namespace CpmPedidos.Repository.Migrations
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasPrecision(17, 2)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("preco");
+                        .HasColumnName("descricao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -339,7 +338,9 @@ namespace CpmPedidos.Repository.Migrations
                         .HasColumnName("nome");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("numeric");
+                        .HasPrecision(17, 2)
+                        .HasColumnType("numeric(17,2)")
+                        .HasColumnName("preco");
 
                     b.HasKey("Id");
 

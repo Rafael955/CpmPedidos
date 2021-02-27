@@ -11,5 +11,10 @@ namespace CpmPedidos.Domain
         public int Id { get; set; }
 
         public DateTime CriadoEm { get; set; }
+
+        internal List<string> _errors;
+        public IReadOnlyCollection<string> Errors;
+
+        //public abstract bool Validate();
     }
 }

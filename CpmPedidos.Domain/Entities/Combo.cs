@@ -14,7 +14,7 @@ namespace CpmPedidos.Domain
         public virtual Imagem Imagem { get; set; }
 
 
-        public List<Produto> Produtos { get; set; }
+        public virtual List<Produto> Produtos { get; set; }
 
 
         public bool Ativo { get; set; }

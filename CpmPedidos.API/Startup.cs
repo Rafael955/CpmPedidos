@@ -39,7 +39,8 @@ namespace CpmPedidos.API
 
             DependencyInjection.Register(services);
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         

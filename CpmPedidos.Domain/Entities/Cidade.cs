@@ -11,5 +11,10 @@ namespace CpmPedidos.Domain
         public string UF { get; set; }
 
         public bool Ativo { get; set; }
+
+        public override bool Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
