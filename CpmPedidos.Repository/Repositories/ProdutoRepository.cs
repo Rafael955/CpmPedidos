@@ -22,7 +22,7 @@ namespace CpmPedidos.Repository.Repositories
             return Context.Produtos
                 .Include(x => x.Categoria)
                 .Where(x => x.Ativo)
-                .OrderByName(order)
+                .OrderProductsByName(order)
                 .Select(x => new
                 {
                     x.Nome,
@@ -43,7 +43,7 @@ namespace CpmPedidos.Repository.Repositories
             var queryProduto = Context.Produtos
                 .Include(x => x.Categoria)
                 .Where(x => x.Ativo && x.Nome.ToUpper().Contains(text.ToUpper()) || x.Descricao.ToUpper().Contains(text.ToUpper()))
-                .OrderByName(order)
+                .OrderProductsByName(order)
                 .Skip(TamanhoPagina * (page - 1)) //Conta para achar o primeiro elemento da página
                 .Take(TamanhoPagina)
                 .Select(x => new
@@ -116,8 +116,6 @@ namespace CpmPedidos.Repository.Repositories
                 })
                 .FirstOrDefault();
         }
-
-
     }
 }
 

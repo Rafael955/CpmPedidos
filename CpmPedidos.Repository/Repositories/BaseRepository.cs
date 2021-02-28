@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CpmPedidos.Repository.Repositories
 {
-    public class BaseRepository<T> where T : class
+    public abstract class BaseRepository<T> where T : class
     {
         protected const int TamanhoPagina = 5;
 
@@ -18,7 +18,6 @@ namespace CpmPedidos.Repository.Repositories
         {
             Context = context;
         }
-
     }
 }
 

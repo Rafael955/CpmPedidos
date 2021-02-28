@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using CpmPedidos.Domain;
 
 namespace CpmPedidos.API.Controllers
 {
@@ -18,11 +20,27 @@ namespace CpmPedidos.API.Controllers
         }
 
         [HttpGet]
-        public dynamic Get()
+        public dynamic Get([FromQuery] string order)
         {
-            var repository = (ICidadeRepository)ServiceProvider.GetService(typeof(ICidadeRepository));
+            return GetService<ICidadeRepository>().Get(order);
+        }
 
-            return repository.Get();
+        [HttpPost]
+        public int Criar(CidadeDTO model)
+        {
+            return GetService<ICidadeRepository>().Criar(model);
+        }
+
+        [HttpPut]
+        public int Alterar(CidadeDTO model)
+        {
+            return GetService<ICidadeRepository>().Alterar(model);
+        }
+
+        [HttpDelete("{id:int}")]
+        public bool Excluir(int id)
+        {
+            return GetService<ICidadeRepository>().Excluir(id);
         }
     }
 }

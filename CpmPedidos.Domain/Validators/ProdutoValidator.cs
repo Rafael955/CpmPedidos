@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CpmPedidos.Domain.Validators
+namespace CpmPedidos.Domain
 {
     public class ProdutoValidator : AbstractValidator<Produto>
     {
