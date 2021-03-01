@@ -81,13 +81,17 @@ namespace CpmPedidos.Repository.Repositories
 
         public virtual async Task<T> Get(int id)
         {
-            return await Context.Set<T>().FindAsync(id);
+            var result = await Context.Set<T>()
+                .AsNoTracking().Where(x => x.Id == id).ToListAsync();
+
+            return result.FirstOrDefault();
         }
 
         public virtual async Task<List<T>> GetAll()
         {
             return await Context.Set<T>()
-              .ToListAsync();
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
