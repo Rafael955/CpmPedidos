@@ -18,9 +18,9 @@ namespace CpmPedidos.Repository.Repositories
 
         }
 
-        public dynamic Get(string order)
+        public async Task<dynamic> GetOrdered(string order)
         {
-            var result = Context.Cidades
+            var result = await Context.Cidades
                 .Where(x => x.Ativo)
                 .OrderCitiesByName(order)
                 .Select(x => new
@@ -30,12 +30,12 @@ namespace CpmPedidos.Repository.Repositories
                     x.UF,
                     x.Ativo
                 })
-                .ToList();
+                .ToListAsync();
 
             return result;
         }
 
-        public int Criar(CidadeDTO model)
+        public async Task<int> Criar(CidadeDTO model)
         {
             if (model.Id > 0) return 0;
 
@@ -43,17 +43,12 @@ namespace CpmPedidos.Repository.Repositories
 
             if (nomeDuplicado) return 0;
 
-            var entity = new Cidade()
-            {
-                Nome = model.Nome,
-                UF = model.UF,
-                Ativo = model.Ativo
-            };
-
+            var entity = new Cidade(model.Nome, model.UF, model.Ativo);
+          
             try
             {
                 Context.Cidades.Add(entity);
-                Context.SaveChanges();
+                await Context.SaveChangesAsync();
 
                 return entity.Id;
             }
@@ -64,7 +59,7 @@ namespace CpmPedidos.Repository.Repositories
             return 0;
         }
 
-        public int Alterar(CidadeDTO model)
+        public async Task<int> Alterar(CidadeDTO model)
         {
             if (model.Id <= 0) return 0;
 
@@ -76,14 +71,14 @@ namespace CpmPedidos.Repository.Repositories
 
             if (nomeDuplicado) return 0;
 
-            entity.Nome = model.Nome;
-            entity.UF = model.UF;
-            entity.Ativo = model.Ativo;
+            entity.AlterarNome(model.Nome);
+            entity.AlterarUF(model.UF);
+            entity.AlterarStatus(model.Ativo);
 
             try
             {
                 Context.Cidades.Update(entity);
-                Context.SaveChanges();
+                await Context.SaveChangesAsync();
 
                 return entity.Id;
             }
@@ -92,27 +87,6 @@ namespace CpmPedidos.Repository.Repositories
             }
 
             return 0;
-        }
-
-        public bool Excluir(int id)
-        {
-            if (id <= 0) return false;
-
-            var cidade = Context.Cidades.Find(id);
-
-            if (cidade == null) return false;
-
-            try
-            {
-                Context.Cidades.Remove(cidade);
-                Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-            }
-           
-            return true;
         }
     }
 }

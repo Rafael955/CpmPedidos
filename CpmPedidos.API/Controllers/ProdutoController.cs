@@ -19,45 +19,53 @@ namespace CpmPedidos.API.Controllers
         }
 
         [HttpGet]
-        public dynamic Get([FromQuery] string order = "")
+        public async Task<dynamic> Get([FromQuery] string order = "")
         {
             var repository = (IProdutoRepository)ServiceProvider.GetService(typeof(IProdutoRepository));
 
-            return repository.Get(order);
+            return await repository.GetOrdered(order);
         }
 
         [HttpGet("busca/{text}/{page?}")]
-        public dynamic GetSearch(string text, int page = 1, [FromQuery] string order = "")
+        public async Task<dynamic> GetSearch(string text, int page = 1, [FromQuery] string order = "")
         {
             var repository = (IProdutoRepository)ServiceProvider.GetService(typeof(IProdutoRepository));
 
-            return repository.Search(text, page, order);
+            return await repository.Search(text, page, order);
         }
 
         [HttpGet("{id:int?}")]
-        public dynamic Detail(int? id)
+        public async Task<dynamic> Detail(int? id)
         {
             if ((id ?? 0) > 0)
             {
                 var repository = (IProdutoRepository)ServiceProvider.GetService(typeof(IProdutoRepository));
 
-                return repository.Detail(id.Value);
+                return await repository.Detail(id.Value);
             }
 
             return null;
         }
 
         [HttpGet("{id:int?}/imagens")]
-        public dynamic Images(int? id)
+        public async Task<dynamic> Images(int? id)
         {
             if ((id ?? 0) > 0)
             {
                 var repository = (IProdutoRepository)ServiceProvider.GetService(typeof(IProdutoRepository));
 
-                return repository.Images(id.Value);
+                return await repository.Images(id.Value);
             }
 
             return null;
+        }
+
+        [HttpPost]
+        public async Task<int> Criar(Produto produto)
+        {
+            var repository = (IProdutoRepository)ServiceProvider.GetService(typeof(IProdutoRepository));
+
+            return await repository.Criar(produto);
         }
     }
 }

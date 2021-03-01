@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CpmPedidos.Interface.Repositories
 {
-    public interface IProdutoRepository
+    public interface IProdutoRepository : IBaseRepository<Produto>
     {
-        dynamic Get(string order);
-        dynamic Search(string text, int page, string order);
-        dynamic Detail(int id);
-        dynamic Images(int id);
+        Task<dynamic> GetOrdered(string order);
+        Task<dynamic> Search(string text, int page, string order);
+        Task<dynamic> Detail(int id);
+        Task<dynamic> Images(int id);
     }
 }

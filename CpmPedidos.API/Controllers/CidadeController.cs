@@ -20,27 +20,27 @@ namespace CpmPedidos.API.Controllers
         }
 
         [HttpGet]
-        public dynamic Get([FromQuery] string order)
+        public async Task<dynamic> Get([FromQuery] string order)
         {
-            return GetService<ICidadeRepository>().Get(order);
+            return await GetService<ICidadeRepository>().GetOrdered(order);
         }
 
         [HttpPost]
-        public int Criar(CidadeDTO model)
+        public async Task<int> Criar(CidadeDTO model)
         {
-            return GetService<ICidadeRepository>().Criar(model);
+            return await GetService<ICidadeRepository>().Criar(model);
         }
 
         [HttpPut]
-        public int Alterar(CidadeDTO model)
+        public async Task<int> Alterar(CidadeDTO model)
         {
-            return GetService<ICidadeRepository>().Alterar(model);
+            return await GetService<ICidadeRepository>().Alterar(model);
         }
 
         [HttpDelete("{id:int}")]
-        public bool Excluir(int id)
+        public async Task<bool> Excluir(int id)
         {
-            return GetService<ICidadeRepository>().Excluir(id);
+            return await GetService<ICidadeRepository>().Excluir(id);
         }
     }
 }

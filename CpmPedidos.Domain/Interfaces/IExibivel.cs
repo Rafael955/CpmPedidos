@@ -2,6 +2,6 @@
 {
     public interface IExibivel
     {
-        bool Ativo { get; set; }
+        bool Ativo { get; }
     }
 }

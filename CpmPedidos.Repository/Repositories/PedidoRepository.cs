@@ -17,22 +17,22 @@ namespace CpmPedidos.Repository.Repositories
 
         }
 
-        public decimal MaxTicket()
+        public async Task<decimal> MaxTicket()
         {
             var hoje = DateTime.Today;
 
-            return Context.Pedidos
+            return await Context.Pedidos
                 .Where(x => x.CriadoEm.Date == hoje)
-                .Max(x => (decimal?)x.ValorTotal) ?? 0;
+                .MaxAsync(x => (decimal?)x.ValorTotal) ?? 0;
         }
 
-        public dynamic ClientOrder()
+        public async Task<dynamic> ClientOrder()
         {
             var hoje = DateTime.Today;
             var inicioMes = new DateTime(hoje.Year, hoje.Month , 1);
             var finalMes = new DateTime(hoje.Year, hoje.Month, DateTime.DaysInMonth(hoje.Year, hoje.Month));
 
-            var result = Context.Pedidos
+            var result = await Context.Pedidos
                 .Where(x => x.CriadoEm.Date >= inicioMes && x.CriadoEm.Date <= finalMes)
                 .GroupBy(pedido => new { pedido.ClienteId, pedido.Cliente.Nome },
                 (chave, pedidos) => new
@@ -48,7 +48,7 @@ namespace CpmPedidos.Repository.Repositories
                 //    Pedidos = x.Count(),
                 //    Total = x.Sum(p => p.ValorTotal)
                 //})
-                .ToList();
+                .ToListAsync();
 
             return result;
         }

@@ -20,6 +20,7 @@ namespace CpmPedidos.Repository
             builder.Property(x => x.Ativo).HasColumnName("ativo").IsRequired();
 
             builder.Property(x => x.EnderecoId).HasColumnName("endereco_id").IsRequired();
+            builder.HasOne(x => x.Endereco).WithOne(x => x.Cliente).HasForeignKey<Endereco>(x => x.ClienteId);
         }
     }
 

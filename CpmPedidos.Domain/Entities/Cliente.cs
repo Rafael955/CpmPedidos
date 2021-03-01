@@ -8,11 +8,23 @@ namespace CpmPedidos.Domain
 {
     public class Cliente : BaseDomain, IExibivel
     {
-        public string Nome { get; set; }
+        public Cliente()
+        {
 
-        public string CPF { get; set; }
+        }
 
-        public bool Ativo { get; set; }
+        public Cliente(string nome, string cpf, bool ativo)
+        {
+            Nome = nome;
+            CPF = cpf;
+            Ativo = ativo;
+        }
+
+        public string Nome { get; private set; }
+
+        public string CPF { get; private set; }
+
+        public bool Ativo { get; private set; }
 
 
         public int EnderecoId { get; set; }
@@ -21,5 +33,22 @@ namespace CpmPedidos.Domain
 
 
         public virtual List<Pedido> Pedidos { get; set; }
+
+
+        public override bool Validate()
+        {
+            var validator = new ClienteValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                    _errors.Add(error.ErrorMessage);
+
+                throw new Exception("Alguns campos estão inválidos, por favor corrija-os" + _errors[0]);
+            }
+
+            return true;
+        }
     }
 }

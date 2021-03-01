@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace CpmPedidos.Domain
 {
-    public class CidadeDTO : BaseDTO
+    public abstract class BaseDTO
     {
-        public string Nome { get; set; }
-
-        public string UF { get; set; }
-
-        public bool Ativo { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace CpmPedidos.Repository.Repositories
 
         }
 
-        public dynamic Get(string order)
+        public async Task<dynamic> GetOrdered(string order)
         {
-            return Context.Produtos
+            return await Context.Produtos
                 .Include(x => x.Categoria)
                 .Where(x => x.Ativo)
                 .OrderProductsByName(order)
@@ -34,11 +34,11 @@ namespace CpmPedidos.Repository.Repositories
                         x.Nome,
                         x.NomeArquivo
                     })
-                });
+                }).ToListAsync();
         }
 
 
-        public dynamic Search(string text, int page, string order)
+        public async Task<dynamic> Search(string text, int page, string order)
         {
             var queryProduto = Context.Produtos
                 .Include(x => x.Categoria)
@@ -54,11 +54,11 @@ namespace CpmPedidos.Repository.Repositories
                     x.Imagens
                 });
 
-            var produtos = queryProduto.ToList();
+            var produtos = await queryProduto.ToListAsync();
 
-            var quantProdutos = Context.Produtos
+            var quantProdutos = await Context.Produtos
                 .Where(x => x.Ativo && x.Nome.ToUpper().Contains(text.ToUpper()) || x.Descricao.ToUpper().Contains(text.ToUpper()))
-                .Count();
+                .CountAsync();
 
             var quantPaginas = (quantProdutos / TamanhoPagina);
 
@@ -70,9 +70,9 @@ namespace CpmPedidos.Repository.Repositories
             return new { produtos, quantPaginas };
         }
 
-        public dynamic Detail(int id)
+        public async Task<dynamic> Detail(int id)
         {
-            return Context.Produtos
+            return await Context.Produtos
                 .Include(x => x.Imagens)
                 .Include(x => x.Categoria)
                 .Where(x => x.Ativo && x.Id == id)
@@ -95,12 +95,12 @@ namespace CpmPedidos.Repository.Repositories
                         x.NomeArquivo
                     })
                 })
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public dynamic Images(int id)
+        public async Task<dynamic> Images(int id)
         {
-            return Context.Produtos
+            return await Context.Produtos
                 .Include(x => x.Imagens)
                 .Where(x => x.Ativo && x.Id == id)
                 .SelectMany(x => x.Imagens, (produto, imagem) => new
@@ -114,8 +114,9 @@ namespace CpmPedidos.Repository.Repositories
                     imagem.Nome,
                     imagem.NomeArquivo
                 })
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
+
     }
 }
 

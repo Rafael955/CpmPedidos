@@ -18,19 +18,19 @@ namespace CpmPedidos.API.Controllers
         }
 
         [HttpGet("ticket-maximo")]
-        public decimal MaxTicket()
+        public async Task<decimal> MaxTicket()
         {
             var repository = (IPedidoRepository)ServiceProvider.GetService(typeof(IPedidoRepository));
 
-            return repository.MaxTicket();
+            return await repository.MaxTicket();
         }
 
         [HttpGet("por-cliente")]
-        public dynamic ClientOrder()
+        public async Task<dynamic> ClientOrder()
         {
             var repository = (IPedidoRepository)ServiceProvider.GetService(typeof(IPedidoRepository));
 
-            return repository.ClientOrder();
+            return await repository.ClientOrder();
         }
     }
 }

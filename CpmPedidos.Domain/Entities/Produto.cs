@@ -1,27 +1,33 @@
-﻿using System.Collections.Generic;
+﻿
+using System;
+using System.Collections.Generic;
 
 namespace CpmPedidos.Domain
 {
+    //Exemplo de Entidade Rica
     public class Produto : BaseDomain, IExibivel
     {
-        //protected Produto() { } //construtor para o Entity Framework
+        protected Produto() { } //construtor para o Entity Framework
 
-        //public Produto(string nome, string codigo, string descricao, decimal preco)
-        //{
-        //    Nome = nome;
-        //    Codigo = codigo;
-        //    Descricao = descricao;
-        //    Preco = preco;
-        //    _errors = new List<string>();
-        //}
+        public Produto(string nome, string codigo, string descricao, decimal preco, bool ativo)
+        {
+            Nome = nome;
+            Codigo = codigo;
+            Descricao = descricao;
+            Preco = preco;
+            Ativo = ativo;
+            _errors = new List<string>();
+            Validate();
+        }
 
-        public string Nome { get; set; }
+        //Possui propriedades
+        public string Nome { get; private set; }
 
-        public string Codigo { get; set; }
+        public string Codigo { get; private set; }
 
-        public string Descricao { get; set; }
+        public string Descricao { get; private set; }
 
-        public decimal Preco { get; set; }
+        public decimal Preco { get; private set; }
 
 
         public int CategoriaId { get; set; }
@@ -36,32 +42,55 @@ namespace CpmPedidos.Domain
         public virtual List<Combo> Combos { get; set; }
 
 
-        public bool Ativo { get; set; }
+        public bool Ativo { get; private set; }
 
+        //Possui comportamentos
+        public void AlterarNome(string nome)
+        {
+            Nome = nome;
+            Validate();
+        }
 
-        //public void AlterarNome(string nome)
-        //{
-        //    Nome = nome;
-        //    Validate();
-        //}
+        public void AlterarCodigo(string codigo)
+        {
+            Codigo = codigo;
+            Validate();
+        }
 
-        //public void AlterarCodigo(string nome)
-        //{
-        //    Nome = nome;
-        //    Validate();
-        //}
+        public void AlterarDescricao(string descricao)
+        {
+            Descricao = descricao;
+            Validate();
+        }
 
-        //public void AlterarDescricao(string nome)
-        //{
-        //    Nome = nome;
-        //    Validate();
-        //}
+        public void AlterarPreco(decimal preco)
+        {
+            Preco = preco;
+            Validate();
+        }
 
-        //public void AlterarPreco(string nome)
-        //{
-        //    Nome = nome;
-        //    Validate();
-        //}
+        public void IsAtivo(bool condition)
+        {
+            Ativo = condition;
+            Validate();
+        }
+
+        //Se auto valida
+        public override bool Validate()
+        {
+            var validator = new ProdutoValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                    _errors.Add(error.ErrorMessage);
+                
+                throw new Exception("Alguns campos estão inválidos, por favor corrija-os" + _errors[0]);
+            }
+
+            return true;
+        }
 
     }
 }

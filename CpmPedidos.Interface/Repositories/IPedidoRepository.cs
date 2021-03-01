@@ -1,8 +1,11 @@
-﻿namespace CpmPedidos.Interface.Repositories
+﻿using CpmPedidos.Domain;
+using System.Threading.Tasks;
+
+namespace CpmPedidos.Interface.Repositories
 {
-    public interface IPedidoRepository
+    public interface IPedidoRepository : IBaseRepository<Pedido>
     {
-        decimal MaxTicket();
-        dynamic ClientOrder();
+        Task<decimal> MaxTicket();
+        Task<dynamic> ClientOrder();
     }
 }
